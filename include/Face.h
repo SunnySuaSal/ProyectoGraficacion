@@ -12,7 +12,7 @@ class Face
 {
 public:
     Face(vector<Vertex> vertices);
-
+    void print();
 private:
     vector<Vertex> vertices;
 };
