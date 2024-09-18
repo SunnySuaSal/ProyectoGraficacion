@@ -3,18 +3,18 @@
 
 #pragma once
 
-#include "Vertex.h"
 #include "vector"
+#include "Vertex.h"
 
 using namespace std;
 
 class Face
 {
 public:
-    Face(vector<Vertex> vertices);
-    void print();
+    Face(vector<unsigned int> vertices);
+    void print(vector<Vertex> vert);
 private:
-    vector<Vertex> vertices;
+    vector<unsigned int> vertices;
 };
 
 #endif
