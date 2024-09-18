@@ -25,3 +25,8 @@ float Vertex::get_y(){
 float Vertex::get_z(){
     return(this->z);
 }
+
+Vertex Vertex::operator+(Vertex op2){
+    Vertex p(this->x+op2.x, this->y+op2.y, this->z+op2.z);
+    return(p);
+}

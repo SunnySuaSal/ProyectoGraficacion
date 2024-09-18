@@ -13,6 +13,7 @@ public:
     float get_x();
     float get_y();
     float get_z();
+    Vertex operator+(Vertex op2);
 private:
     float x, y, z;
 };
