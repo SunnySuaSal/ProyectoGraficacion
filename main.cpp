@@ -1,14 +1,15 @@
 #include <iostream>
-#include "include/Obj.h"
+#include "include/Ply.h"
 
 using namespace std;
 
 int main(){
     cout << "Cargando..." << endl;
 
-        Obj cube1("models/cube1.obj");
+        //ply
+        Ply cube1("models/cube1.ply");
         cube1.print_faces();
-        Obj cube2("models/cube2.obj");
+        Ply cube2("models/cube2.ply");
 
     cout << "¡Listo!" << endl;
 }
