@@ -1,11 +1,11 @@
 #include "../include/Ply.h"
 
-Ply::Ply(string file)
+Ply::Ply(string file): Model(file)
 {
-    this->name = "";
-    this->vertices = {};
-    this->faces = {};
+    this->load(file);
+}
 
+void Ply::load(string file){
     string line;
     ifstream PLYfile(file);
 
@@ -47,24 +47,5 @@ Ply::Ply(string file)
                 cara_actual++;
             }
         }
-    }
-}
-
-vector<string> Ply::split(const string& str, const string& delim) {
-    vector<string> tokens;
-    size_t prev = 0, pos = 0;
-    do {
-        pos = str.find(delim, prev);
-        if (pos == string::npos) pos = str.length();
-        string token = str.substr(prev, pos - prev);
-        if (!token.empty()) tokens.push_back(token);
-        prev = pos + delim.length();
-    } while (pos < str.length() && prev < str.length());
-    return tokens;
-}
-
-void Ply::print_faces() {
-    for (Face f : this->faces) {
-        f.print(this->vertices);
     }
 }

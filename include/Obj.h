@@ -9,18 +9,15 @@
 #include <fstream>
 #include "Vertex.h"
 #include "Face.h"
+#include "Model.h"
 
 using namespace std;
 
-class Obj{
+class Obj: public Model{
 public:
     Obj(string file);
-    void print_faces();
 private:
-    string name;
-    vector<Vertex> vertices;
-    vector<Face> faces;
-    vector<string> split(const string& str, const string& delim);
+    void load(string file);
 };
 
 #endif

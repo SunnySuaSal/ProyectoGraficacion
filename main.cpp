@@ -1,5 +1,5 @@
 #include <iostream>
-#include "include/Ply.h"
+#include "include/Object.h"
 
 using namespace std;
 
@@ -7,9 +7,11 @@ int main(){
     cout << "Cargando..." << endl;
 
         //ply
-        Ply cube1("models/cube1.ply");
+        Object<Obj> cube1("models/cube1.obj");
         cube1.print_faces();
-        Ply cube2("models/cube2.ply");
+        cout << "Cambio" << endl;
+        Object<Ply> cube2("models/cube2.ply");
+        cube2.print_faces();
 
     cout << "¡Listo!" << endl;
 }
