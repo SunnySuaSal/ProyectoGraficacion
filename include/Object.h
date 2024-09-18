@@ -5,6 +5,7 @@
 
 #include "Obj.h"
 #include "Ply.h"
+#include "Stl.h"
 
 template <class T>
 class Object: public T
