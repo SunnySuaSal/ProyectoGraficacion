@@ -30,3 +30,13 @@ Vertex Vertex::operator+(Vertex op2){
     Vertex p(this->x+op2.x, this->y+op2.y, this->z+op2.z);
     return(p);
 }
+
+Vertex Vertex::operator-(Vertex op2){
+    Vertex p(this->x-op2.x, this->y-op2.y, this->z-op2.z);
+    return(p);
+}
+
+Vertex Vertex::operator*(float op2){
+    Vertex p(this->x*op2, this->y*op2, this->z*op2);
+    return(p);
+}

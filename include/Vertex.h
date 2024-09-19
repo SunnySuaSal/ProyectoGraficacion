@@ -14,6 +14,8 @@ public:
     float get_y();
     float get_z();
     Vertex operator+(Vertex op2);
+    Vertex operator-(Vertex op2);
+    Vertex operator*(float op2);
 private:
     float x, y, z;
 };

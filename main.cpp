@@ -23,7 +23,8 @@ int main(){
 
        //P = P1 + t(P2 - P1)
        for(float t=0.0; t<=1.0; t=t+dt){
-        Vertex P = P1 + P2;
+        Vertex P = P1 * 2.0;
+        
         /*
         float x = P1.get_x() + (t * (P2.get_x() - P1.get_x()));
         float y = P1.get_y() + (t * (P2.get_y() - P1.get_y()));
