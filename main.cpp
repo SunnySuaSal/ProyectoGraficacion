@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "include/Object.h"
 
 using namespace std;
@@ -17,6 +18,8 @@ int main(){
         cube3.print_faces();
         cout << "¡Listo!" << endl;
         */
+
+       /*
        Vertex P1(2, -3, 0);
        Vertex P2(-5, 6, 4);
        float dt = 0.1;
@@ -24,8 +27,22 @@ int main(){
        //P = P1 + t(P2 - P1)
        for(float t=0.0; t<1.0+dt; t=t+dt){
         Vertex P = P1 + ((P2 - P1) * t);
+        */
 
-        cout << endl << "t = " << t << endl;
-        P.print();
+       //Curvas de Hermite
+       Vertex P1(2, -3, 0);
+       Vertex P4(-5, 6, 4);
+       Vertex R1(5, 5, 1);
+       Vertex R4(-5, 3, -2);
+       float dt = 0.1;
+
+       for(float t=0.0; t<1.0+dt; t=t+dt){
+            Vertex P = (P1 * (2*pow(t,3) - 3*pow(t,2) + 1)) +
+                        (P4 * (-2*pow(t,3) + 3*pow(t,2)) + 
+                        (R1 * (pow(t,3) - 2*pow(t,2) + t)) + 
+                        (R4 * (pow(t,3) - pow(t,2))));
+            cout << endl << "t = " << t << endl;
+            P.print();
        }
+       
 }
