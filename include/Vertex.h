@@ -16,6 +16,7 @@ public:
     Vertex operator+(Vertex op2);
     Vertex operator-(Vertex op2);
     Vertex operator*(float op2);
+    void printOctante();
 private:
     float x, y, z;
 };

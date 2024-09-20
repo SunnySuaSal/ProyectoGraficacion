@@ -40,3 +40,37 @@ Vertex Vertex::operator*(float op2){
     Vertex p(this->x*op2, this->y*op2, this->z*op2);
     return(p);
 }
+
+void Vertex::printOctante(){
+    if(this->x == 0 || this->y == 0 || this->z == 0)
+        cout << "En el borde de octantes" << endl;
+    if(this->z > 0){
+        if(this->y > 0){
+            if(this->x > 0){
+                cout << "Octante I" << endl;
+            }else{
+                cout << "Octante II" << endl;
+            }
+        }else{
+            if(this->x < 0){
+                cout << "Octante III" << endl;
+            }else{
+                cout << "Octante IV" << endl;
+            }
+        }
+    } else {
+        if(this->y > 0){
+            if(this->x > 0){
+                cout << "Octante V" << endl;
+            }else{
+                cout << "Octante VI" << endl;
+            }
+        }else{
+            if(this->x < 0){
+                cout << "Octante VII" << endl;
+            }else{
+                cout << "Octante VIII" << endl;
+            }
+        }
+    }
+}
