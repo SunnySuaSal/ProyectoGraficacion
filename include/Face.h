@@ -13,6 +13,7 @@ class Face
 public:
     Face(vector<unsigned int> vertices);
     void print(vector<Vertex> vert);
+    void poligName(vector<Vertex> vert);
 private:
     vector<unsigned int> vertices;
 };
