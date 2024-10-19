@@ -5,7 +5,7 @@ Animation::Animation()
 
 }
 
-vector<Vertex> pline(Vertex P1, Vertex P2, float dt){
+vector<Vertex> Animation::pline(Vertex P1, Vertex P2, float dt){
     vector<Vertex> linePoints = {};
     //Ecuacion parametrica de la recta
     //P = P1 + t(P2 - P1)
@@ -16,7 +16,7 @@ vector<Vertex> pline(Vertex P1, Vertex P2, float dt){
     return (linePoints);
 }
 
-vector<Vertex> bezier(Vertex P1, Vertex P2, Vertex P3, Vertex P4, float dt){
+vector<Vertex> Animation::bezier(Vertex P1, Vertex P2, Vertex P3, Vertex P4, float dt){
     vector<Vertex> curvePoints = {};
     //Curvas de Bezier
     for(float t=0.0; t<1.0+dt; t=t+dt){
@@ -29,14 +29,15 @@ vector<Vertex> bezier(Vertex P1, Vertex P2, Vertex P3, Vertex P4, float dt){
     return (curvePoints);
 }
 
-vector<Vertex> hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, float dt){
+vector<Vertex> Animation::hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, float dt){
+    vector<Vertex> curvePoints = {};
     //Curvas de Hermite
     for(float t=0.0; t<1.0+dt; t=t+dt){
         Vertex P = (P1 * (2*pow(t,3) - 3*pow(t,2) + 1)) +
                     (P4 * (-2*pow(t,3) + 3*pow(t,2)) + 
                     (R1 * (pow(t,3) - 2*pow(t,2) + t)) + 
                     (R4 * (pow(t,3) - pow(t,2))));
-        cout << endl << "t = " << t << endl;
-        P.print();
-    }   
+        curvePoints.push_back(P);
+    }  
+    return (curvePoints); 
 }

@@ -1,20 +1,18 @@
 #include <iostream>
+#include "include/Vertex.h"
 #include "include/Animation.h"
 
 using namespace std;
 
 int main(){
-    cout << "Cargando..." << endl;
+    Animation an;
+    Vertex P1(2, -3, 0);
+    Vertex P2(-5, 6, 4);
+    vector<Vertex> line = an.pline(P1, P2, 0.1);
 
-        /*
-        Object<Obj> cube1("models/cube1.obj");
-        cube1.print_faces();
-        cout << "Cambio" << endl;
-        Object<Ply> cube2("models/cube2.ply");
-        cube2.print_faces();
-        cout << "Cambio" << endl;
-        Object<Stl> cube3("models/cube1.stl");
-        cube3.print_faces();
-        cout << "¡Listo!" << endl;
-        */
+    Vertex Pa(0, 10, 0);
+    Vertex Pb(3, 7, 2);
+    Vertex Pc(9, 3, 4) ;
+    Vertex Pd(8, 0, 6);
+    vector<Vertex> curve = an.bezier(Pa, Pb, Pc, Pd, 0.1);
 }
