@@ -8,6 +8,7 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <armadillo>
 #include "Vertex.h"
 
 class Animation

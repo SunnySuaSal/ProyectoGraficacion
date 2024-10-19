@@ -11,8 +11,8 @@
         "-g",
         "${fileDirname}/**.cpp",
         "${fileDirname}/cpp/**.cpp",
-        "-I/opt/homebrew/include",
-        "-L/opt/homebrew/lib",
+        "-I/opt/homebrew/opt/armadillo/include",
+        "-L/opt/homebrew/opt/armadillo/lib",
         "-larmadillo",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
