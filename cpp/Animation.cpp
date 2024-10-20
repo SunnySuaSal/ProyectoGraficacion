@@ -53,3 +53,23 @@ vector<Vertex> Animation::hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, fl
     }  
     return (curvePoints); 
 }
+
+    arma::Mat<float> Animation::traslation(float dx, float dy, float dz){
+        arma::Mat<float> Tt = {
+                {1, 0, 0, dx},
+                {0, 1, 0, dy},
+                {0, 0, 1, dz},
+                {0, 0, 0, 1}
+                };
+        return (Tt);
+    }
+
+    arma::Mat<float> Animation::scaling(float sx, float sy, float sz){
+        arma::Mat<float> Ss = {
+                {sx, 0, 0, 0},
+                {0, sy, 0, 0},
+                {0, 0, sz, 0},
+                {0, 0, 0, 1}
+                };
+        return (Ss);
+    }
