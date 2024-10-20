@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <armadillo>
+
 using namespace std;
 
 class Vertex
@@ -16,6 +18,7 @@ public:
     Vertex operator+(Vertex op2);
     Vertex operator-(Vertex op2);
     Vertex operator*(float op2);
+    arma::Col<float> homogeneous();
 private:
     float x, y, z;
 };

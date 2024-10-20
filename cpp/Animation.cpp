@@ -25,14 +25,18 @@ vector<Vertex> Animation::bezier(Vertex P1, Vertex P2, Vertex P3, Vertex P4, flo
                     {-3, 3, 0, 0},
                     {1, 0, 0, 0}
                     };
-    arma::Col<float> Gb = {P1.get_x(), P2.get_x(), P3.get_x(), P4.get_x()};
+    arma::Mat<float> Gb = {{P1.get_x(), P1.get_y(), P1.get_z()},
+                            {P2.get_x(), P2.get_y(), P2.get_z()},
+                            {P3.get_x(), P3.get_y(), P3.get_z()},
+                            {P4.get_x(), P4.get_y(), P4.get_z()}};
 
 
     //Q(t) = T * Mb * Gb
     for(float t=0.0; t<1.0+dt; t=t+dt){
         arma::Row<float> T = {powf(t, 3), powf(t, 2), t, 1};
         arma::Mat<float> Qt = T * Mb * Gb;
-        cout << Qt;
+        Vertex P(Qt(0,0), Qt(0,1), Qt(0,2));
+        curvePoints.push_back(P);
     }
     return (curvePoints);
 }
