@@ -16,3 +16,7 @@ void Face::print(vector<Vertex> vert){
     }
     cout << endl;
 }
+
+vector<unsigned int> Face::get_vertices(){
+    return this->vertices;
+}

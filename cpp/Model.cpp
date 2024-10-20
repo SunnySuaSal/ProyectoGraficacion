@@ -25,3 +25,7 @@ void Model::print_faces(){
         f.print(this->vertices);
     }
 }
+
+vector<Face> Model::get_faces(){
+    return this->faces;
+}

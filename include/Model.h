@@ -17,6 +17,7 @@ class Model
 public:
     Model(string file);
     void print_faces();
+    vector<Face> get_faces();
 protected:
     string name;
     vector<Vertex> vertices;

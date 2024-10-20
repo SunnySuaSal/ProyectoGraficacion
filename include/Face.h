@@ -13,6 +13,7 @@ class Face
 public:
     Face(vector<unsigned int> vertices);
     void print(vector<Vertex> vert);
+    vector<unsigned int> get_vertices();
 private:
     vector<unsigned int> vertices;
 };
