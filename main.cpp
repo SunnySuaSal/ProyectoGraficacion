@@ -8,6 +8,8 @@
 using namespace std;
 
 int main(){
+
+    /*
     Object<Obj> cube("models/cube1.obj");
 
     //Trayectoria lineal
@@ -29,6 +31,18 @@ int main(){
 
         }
     }
+    */
+   Animation an;
+   Vertex Pt(1, 0, 0);
+   arma::Mat<float> Rz90 = an.rotation_z(90); //Matriz de rotacion de 90 grados en el eje z
+   arma::Mat<float> Pt90 = Rz90 * Pt.homogeneous();
+   arma::Mat<float> Rzn90 = an.rotation_z(-90); //Matriz de rotacion de -90 grados en el eje z
+   arma::Mat<float> Ptn90 = Rzn90 * Pt.homogeneous();
+
+   Pt.print();
+   cout << endl;
+   cout << Pt90 << endl;
+    cout << Ptn90 << endl;
 
     return 0;
 }

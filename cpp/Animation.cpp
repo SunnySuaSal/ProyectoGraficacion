@@ -1,5 +1,7 @@
 #include "../include/Animation.h"
 
+#define PI 3.141592
+
 Animation::Animation()
 {
 
@@ -72,4 +74,38 @@ vector<Vertex> Animation::hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, fl
                 {0, 0, 0, 1}
                 };
         return (Ss);
+    }
+
+    arma::Mat<float> Animation::rotation_x(float theta){
+         float rtheta = (theta * PI) / 180;
+        arma::Mat<float> Rx = {
+                {1, 0, 0, 0},
+                {0, cos(rtheta), -sin(rtheta), 0},
+                {0, sin(rtheta), cos(rtheta), 0},
+                {0, 0, 0, 1}
+                };
+                return (Rx);
+    }
+
+    arma::Mat<float> Animation::rotation_y(float theta){
+        float rtheta = (theta * PI) / 180;
+        arma::Mat<float> Ry = {
+                {cos(rtheta), 0, sin(rtheta), 0},
+                {0, 1, 0, 0},
+                {-sin(rtheta), 0, cos(rtheta), 0},
+                {0, 0, 0, 1}
+                };
+                return (Ry);
+    }
+
+    arma::Mat<float> Animation::rotation_z(float theta){
+        float rtheta = (theta * PI) / 180;
+
+        arma::Mat<float> Rz = {
+                {cos(rtheta), -sin(rtheta), 0, 0},
+                {sin(rtheta), cos(rtheta), 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
+                };
+                return (Rz);
     }

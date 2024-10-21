@@ -9,6 +9,7 @@ using namespace std;
 #include <vector>
 #include <cmath>
 #include <armadillo>
+//#include <numbers>
 #include "Vertex.h"
 
 class Animation
@@ -20,6 +21,9 @@ public:
     vector<Vertex> hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, float dt);
     arma::Mat<float> traslation(float dx, float dy, float dz);
     arma::Mat<float> scaling(float sx, float sy, float sz);
+    arma::Mat<float> rotation_x(float theta);
+    arma::Mat<float> rotation_y(float theta);
+    arma::Mat<float> rotation_z(float theta);
 private:
 
 };
