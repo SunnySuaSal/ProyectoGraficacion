@@ -65,10 +65,12 @@ int main(){
 
     cout<<v1ppp<<endl;
     cout<<v2ppp<<endl;
-    
 
+    //Verificamos que se obtiene lo mismo que con la matriz de rotacion compuesta
+    arma::Mat<float> TC = an.rotation_z(-36.26) * an.rotation_y(16.39) * an.traslation(-v1.get_x(), -v1.get_y(), -v1.get_z());
+    arma::Mat<float> v1r = TC * v1.homogeneous();
 
-
+    cout<<v1r<<endl;
 
     return 0;
 }
