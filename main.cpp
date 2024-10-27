@@ -48,29 +48,36 @@ int main(){
     */
 
    Animation an;
-   Vertex v1(3.0, 4.5, 1.2);
-   Vertex v2(6.4, 7.1, 2.2);
+   Vertex P1(-23.0, 13.5, -4.4);
+   Vertex P2(-12.65, -2.4, 12.67);
+   Vertex P3(6.4, 7.1, 2.2);
 
-   //Paso 1 - Trasladar los puntos al origen
-   arma::Mat<float> v1p = an.traslation(-v1.get_x(), -v1.get_y(), -v1.get_z()) * v1.homogeneous();
-   arma::Mat<float> v2p = an.traslation(-v1.get_x(), -v1.get_y(), -v1.get_z()) * v2.homogeneous();
+   //Paso 1 - Trasladar P1 al origen
+   arma::Mat<float> T1 = {{1, 0, 0, -P1.get_x()},
+                          {0, 1, 0, -P1.get_y()},
+                          {0, 0, 1, -P1.get_z()},
+                          {0, 0, 0, 1}};
 
-    //Paso 2 - Rotar el punto v2p al eje x
-    arma::Mat<float> v1pp = an.rotation_y(16.39) * v1p;
-    arma::Mat<float> v2pp = an.rotation_y(16.39) * v2p;
+    //Paso 2
+    float D1 = sqrt(pow(P2.get_z() - P1.get_z(), 2) + pow(P2.get_x() - P1.get_x(), 2));
+    arma::Mat<float> Ry2 = {{(P2.get_z() - P1.get_z())/D1, 0, -(P2.get_x() - P1.get_x())/D1, 0},
+                            {0, 1, 0, 0},
+                            {(P2.get_x() - P1.get_x())/D1, 0, (P2.get_z() - P1.get_z())/D1, 0},
+                            {0, 0, 0, 1}};
 
-    //Paso 3 - Rotar el punto v2pp al eje z
-    arma::Mat<float> v1ppp = an.rotation_z(-36.26) * v1pp;
-    arma::Mat<float> v2ppp = an.rotation_z(-36.26) * v2pp;
+    //Paso 3
+    float D2 = sqrt(pow(P2.get_x() - P1.get_x(), 2) + pow(P2.get_y() - P1.get_y(), 2) + pow(P2.get_z() - P1.get_z(), 2));
+    arma::Mat<float> Rx3 = {{1, 0, 0, 0},
+                            {0, D1/D2, -(P2.get_y() - P1.get_y())/D2, 0},
+                            {0, (P2.get_y() - P1.get_y())/D2, D1/D2, 0},
+                            {0, 0, 0, 1}};
 
-    cout<<v1ppp<<endl;
-    cout<<v2ppp<<endl;
+    arma::Mat<float> P1p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P1.homogeneous();
+    arma::Mat<float> P2p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P2.homogeneous();
+    cout << P1p << endl;
+    cout << P2p << endl;
+    //Paso 4
 
-    //Verificamos que se obtiene lo mismo que con la matriz de rotacion compuesta
-    arma::Mat<float> TC = an.rotation_z(-36.26) * an.rotation_y(16.39) * an.traslation(-v1.get_x(), -v1.get_y(), -v1.get_z());
-    arma::Mat<float> v1r = TC * v1.homogeneous();
-
-    cout<<v1r<<endl;
 
     return 0;
 }
