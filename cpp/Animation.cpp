@@ -109,3 +109,38 @@ vector<Vertex> Animation::hermite(Vertex P1, Vertex P4, Vertex R1, Vertex R4, fl
                 };
                 return (Rz);
     }
+
+    arma::Mat<float> Animation::rotationP1P2(Vertex P1, Vertex P2, float theta){
+
+        //Paso 1 - Trasladar P1 al origen
+        arma::Mat<float> T1 = {{1, 0, 0, -P1.get_x()},
+                                {0, 1, 0, -P1.get_y()},
+                                {0, 0, 1, -P1.get_z()},
+                                {0, 0, 0, 1}};
+
+        //Paso 2
+        float D1 = sqrt(pow(P2.get_z() - P1.get_z(), 2) + pow(P2.get_x() - P1.get_x(), 2));
+        arma::Mat<float> Ry2 = {{(P2.get_z() - P1.get_z())/D1, 0, -(P2.get_x() - P1.get_x())/D1, 0},
+                                {0, 1, 0, 0},
+                                {(P2.get_x() - P1.get_x())/D1, 0, (P2.get_z() - P1.get_z())/D1, 0},
+                                {0, 0, 0, 1}};
+
+        //Paso 3
+        float D2 = sqrt(pow(P2.get_x() - P1.get_x(), 2) + pow(P2.get_y() - P1.get_y(), 2) + pow(P2.get_z() - P1.get_z(), 2));
+        arma::Mat<float> Rx3 = {{1, 0, 0, 0},
+                                {0, D1/D2, -(P2.get_y() - P1.get_y())/D2, 0},
+                                {0, (P2.get_y() - P1.get_y())/D2, D1/D2, 0},
+                                {0, 0, 0, 1}};
+
+        //Paso 4
+        arma::Mat<float> Rz4 = this->rotation_z(theta);
+
+        //Paso 5
+        arma::Mat<float> Rx5 = Rx3.i();
+        //Paso 6
+        arma::Mat<float> Ry6 = Ry2.i();
+        //Paso 7
+        arma::Mat<float> T7 = T1.i();
+
+        return (T7 * Ry6 * Rx5 * Rz4 * Rx3 * Ry2 * T1);
+    }

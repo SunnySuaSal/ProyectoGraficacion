@@ -8,7 +8,17 @@
 using namespace std;
 
 int main(){
-
+    Animation an;
+    Vertex P1(0, 0, 0);
+    Vertex P2(10, 10, 10);
+    Vertex v1(10, 10, 0);
+    float angle = 0.0;
+    while(angle<360){
+        arma::Mat<float> v1p = an.rotationP1P2(P1, P2, angle)  *v1.homogeneous();
+        cout << "Angle = " << angle << endl;
+        cout << v1p;
+        angle = angle + 0.5;
+    }
     /*
     Object<Obj> cube("models/cube1.obj");
 
@@ -47,44 +57,6 @@ int main(){
    cout << Ptn90 << endl;
     */
 
-   Animation an;
-   Vertex P1(-23.0, 13.5, -4.4);
-   Vertex P2(-12.65, -2.4, 12.67);
-   Vertex P3(6.4, 7.1, 2.2);
 
-   //Paso 1 - Trasladar P1 al origen
-   arma::Mat<float> T1 = {{1, 0, 0, -P1.get_x()},
-                          {0, 1, 0, -P1.get_y()},
-                          {0, 0, 1, -P1.get_z()},
-                          {0, 0, 0, 1}};
-
-    //Paso 2
-    float D1 = sqrt(pow(P2.get_z() - P1.get_z(), 2) + pow(P2.get_x() - P1.get_x(), 2));
-    arma::Mat<float> Ry2 = {{(P2.get_z() - P1.get_z())/D1, 0, -(P2.get_x() - P1.get_x())/D1, 0},
-                            {0, 1, 0, 0},
-                            {(P2.get_x() - P1.get_x())/D1, 0, (P2.get_z() - P1.get_z())/D1, 0},
-                            {0, 0, 0, 1}};
-
-    //Paso 3
-    float D2 = sqrt(pow(P2.get_x() - P1.get_x(), 2) + pow(P2.get_y() - P1.get_y(), 2) + pow(P2.get_z() - P1.get_z(), 2));
-    arma::Mat<float> Rx3 = {{1, 0, 0, 0},
-                            {0, D1/D2, -(P2.get_y() - P1.get_y())/D2, 0},
-                            {0, (P2.get_y() - P1.get_y())/D2, D1/D2, 0},
-                            {0, 0, 0, 1}};
-
-    arma::Mat<float> P1p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P1.homogeneous();
-    arma::Mat<float> P2p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P2.homogeneous();
-
-    //Paso 4
-    arma::Mat<float> P3ppp = Rx3 * Ry2 * T1 * P3.homogeneous();
-    float D3 = sqrt(pow(P3ppp.at(0, 0), 2) + pow(P3ppp.at(1, 0), 2));
-    arma::Mat<float> Rz4 = {{P3ppp.at(1, 0)/D3, -P3ppp.at(0, 0)/D3, 0, 0},
-                            {P3ppp.at(0, 0)/D3, P3ppp.at(1, 0)/D3, 0, 0},
-                            {0, 0, 1, 0},
-                            {0, 0, 0, 1}};
-
-    cout << Rz4 * Rx3 * Ry2 * T1 * P1.homogeneous() << endl;
-    cout << Rz4 * Rx3 * Ry2 * T1 * P2.homogeneous() << endl;
-    cout << Rz4 * Rx3 * Ry2 * T1 * P3.homogeneous() << endl;
     return 0;
 }

@@ -24,6 +24,7 @@ public:
     arma::Mat<float> rotation_x(float theta);
     arma::Mat<float> rotation_y(float theta);
     arma::Mat<float> rotation_z(float theta);
+    arma::Mat<float> rotationP1P2(Vertex P1, Vertex P2, float theta);
 private:
 
 };
