@@ -15,9 +15,11 @@ using namespace std;
 class Model
 {
 public:
+    Model();
     Model(string file);
     void print_faces();
     vector<Face> get_faces();
+    virtual void load_model(string file) = 0;
 protected:
     string name;
     vector<Vertex> vertices;

@@ -15,7 +15,9 @@ using namespace std;
 
 class Obj: public Model{
 public:
+    Obj();
     Obj(string file);
+    void load_model(string file);
 private:
     void load(string file);
 };

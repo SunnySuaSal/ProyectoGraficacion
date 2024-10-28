@@ -1,11 +1,17 @@
 #include "../include/Model.h"
 
+Model::Model()
+{
+    this->name = "";
+    this->vertices = {};
+    this->faces = {};
+}
+
 Model::Model(string file)
 {
     this->name = "";
     this->vertices = {};
     this->faces = {};
-
 }
 
 vector<string> Model::split(const string& str, const string& delim){

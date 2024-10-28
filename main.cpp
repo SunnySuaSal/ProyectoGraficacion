@@ -5,6 +5,5 @@ using namespace std;
 
 int main(){
     Cannon myCannon;
-    
     return 0;
 }

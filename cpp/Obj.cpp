@@ -1,6 +1,16 @@
 #include "../include/Obj.h"
 
+Obj::Obj(): Model()
+{
+
+}
+
 Obj::Obj(string file): Model(file)
+{
+    this->load(file);
+}
+
+void Obj::load_model(string file)
 {
     this->load(file);
 }

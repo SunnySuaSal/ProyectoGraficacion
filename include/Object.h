@@ -11,8 +11,8 @@ template <class T>
 class Object: public T
 {
 public:
+    Object(): T() {};
     Object(string file): T(file) {};
-    //get_vertex method
     vector<Vertex> get_vertices(){
         return this->vertices;
     }

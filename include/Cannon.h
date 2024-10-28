@@ -9,8 +9,8 @@ class Cannon
 {
 public:
     Cannon();
-
 private:
+    Object<Obj> cbody;
 
 };
 
