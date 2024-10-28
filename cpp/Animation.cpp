@@ -1,7 +1,5 @@
 #include "../include/Animation.h"
 
-#define PI 3.141592
-
 Animation::Animation()
 {
 

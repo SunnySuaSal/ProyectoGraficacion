@@ -12,6 +12,8 @@ using namespace std;
 //#include <numbers>
 #include "Vertex.h"
 
+#define PI 3.141592
+
 class Animation
 {
 public:

@@ -18,6 +18,7 @@ private:
     Vertex bullet_position;
     float angle;
     float force;
+    vector<Vertex> bullet_trajectory;
 };
 
 #endif
