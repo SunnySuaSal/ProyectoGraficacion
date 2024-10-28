@@ -1,6 +1,16 @@
 #include "../include/Stl.h"
 
+Stl::Stl(): Model()
+{
+    
+}
+
 Stl::Stl(string file): Model(file)
+{
+    this->load(file);
+}
+
+void Stl::load_model(string file)
 {
     this->load(file);
 }

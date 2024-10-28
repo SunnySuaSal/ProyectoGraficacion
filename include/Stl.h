@@ -16,7 +16,9 @@ using namespace std;
 class Stl: public Model
 {
 public:
+    Stl();
     Stl(string file);
+    void load_model(string file);
 private:
     void load(string file);
 };

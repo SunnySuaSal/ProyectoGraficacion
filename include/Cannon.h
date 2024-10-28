@@ -11,6 +11,8 @@ public:
     Cannon();
 private:
     Object<Obj> cbody;
+    Object<Ply> cwheel;
+    Object<Stl> bullet;
 
 };
 

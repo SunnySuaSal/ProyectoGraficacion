@@ -1,6 +1,16 @@
 #include "../include/Ply.h"
 
+Ply::Ply(): Model()
+{
+
+}
+
 Ply::Ply(string file): Model(file)
+{
+    this->load(file);
+}
+
+void Ply::load_model(string file)
 {
     this->load(file);
 }

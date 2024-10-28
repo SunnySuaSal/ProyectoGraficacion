@@ -16,7 +16,9 @@ using namespace std;
 class Ply: public Model
 {
 public:
+    Ply();
     Ply(string file);
+    void load_model(string file);
 private:
     void load(string file);
 };
