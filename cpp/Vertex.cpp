@@ -1,6 +1,10 @@
 #include "../include/Vertex.h"
 #include <iostream>
 
+Vertex::Vertex()
+{
+
+}
 
 Vertex::Vertex(float x, float y, float z)
 {
@@ -24,6 +28,18 @@ float Vertex::get_y(){
 
 float Vertex::get_z(){
     return(this->z);
+}
+
+void Vertex::set_x(float x){
+    this->x = x;
+}
+
+void Vertex::set_y(float x){
+    this->y = y;
+}
+
+void Vertex::set_z(float x){
+    this->z = z;
 }
 
 Vertex Vertex::operator+(Vertex op2){
