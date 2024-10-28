@@ -74,10 +74,17 @@ int main(){
 
     arma::Mat<float> P1p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P1.homogeneous();
     arma::Mat<float> P2p = T1.i() * Ry2.i() * Rx3.i() * Rx3 * Ry2 * T1 * P2.homogeneous();
-    cout << P1p << endl;
-    cout << P2p << endl;
+
     //Paso 4
+    arma::Mat<float> P3ppp = Rx3 * Ry2 * T1 * P3.homogeneous();
+    float D3 = sqrt(pow(P3ppp.at(0, 0), 2) + pow(P3ppp.at(1, 0), 2));
+    arma::Mat<float> Rz4 = {{P3ppp.at(1, 0)/D3, -P3ppp.at(0, 0)/D3, 0, 0},
+                            {P3ppp.at(0, 0)/D3, P3ppp.at(1, 0)/D3, 0, 0},
+                            {0, 0, 1, 0},
+                            {0, 0, 0, 1}};
 
-
+    cout << Rz4 * Rx3 * Ry2 * T1 * P1.homogeneous() << endl;
+    cout << Rz4 * Rx3 * Ry2 * T1 * P2.homogeneous() << endl;
+    cout << Rz4 * Rx3 * Ry2 * T1 * P3.homogeneous() << endl;
     return 0;
 }
