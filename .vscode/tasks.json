@@ -12,8 +12,22 @@
         "${fileDirname}/**.cpp",
         "${fileDirname}/cpp/**.cpp",
         "-I/opt/homebrew/opt/armadillo/include",
+        "-I/opt/homebrew/include", // Añadido para GLFW y otras posibles librerías
         "-L/opt/homebrew/opt/armadillo/lib",
+        "-L/opt/homebrew/lib", // Añadido para enlazar correctamente GLFW
         "-larmadillo",
+        "-lglew",
+        "-lglfw",
+        "-framework",
+        "CoreVideo",
+        "-framework",
+        "OpenGL",
+        "-framework",
+        "IOKit",
+        "-framework",
+        "Cocoa",
+        "-framework",
+        "Carbon",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
       ],
