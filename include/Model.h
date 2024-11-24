@@ -9,6 +9,7 @@
 #include <fstream>
 #include "Vertex.h"
 #include "Face.h"
+#include "OpenGL.h"
 
 using namespace std;
 
@@ -19,7 +20,10 @@ public:
     Model(string file);
     void print_faces();
     vector<Face> get_faces();
+    Vertex get_vertex(int ind);
     virtual void load_model(string file) = 0;
+    vector <GLfloat> get_vertex_buffer_data();
+    vector <GLfloat> get_vertex_color_data();
 protected:
     string name;
     vector<Vertex> vertices;

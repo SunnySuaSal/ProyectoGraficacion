@@ -4,12 +4,14 @@
 #pragma once
 
 #include "Object.h"
+#include "Triangle.h"
 
 class Cannon
 {
 public:
     Cannon();
     void shoot();
+    void draw();
 private:
     Object<Obj> cbody;
     Object<Ply> cwheel;

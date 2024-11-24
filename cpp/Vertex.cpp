@@ -34,11 +34,11 @@ void Vertex::set_x(float x){
     this->x = x;
 }
 
-void Vertex::set_y(float x){
+void Vertex::set_y(float y){
     this->y = y;
 }
 
-void Vertex::set_z(float x){
+void Vertex::set_z(float z){
     this->z = z;
 }
 

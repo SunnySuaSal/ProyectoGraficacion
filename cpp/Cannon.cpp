@@ -1,6 +1,7 @@
 #include "../include/Cannon.h"
 #include "../include/Animation.h"
 
+
 Cannon::Cannon()
 {
     this->cbody.load_model("models/cannon_body.obj");
@@ -19,6 +20,13 @@ Cannon::Cannon()
     this->force = 0.5;
 
     this->bullet_trajectory = {};
+}
+
+void Cannon::draw(){
+        Triangle body_data(this->cbody.get_vertex_buffer_data(),
+                 this->cbody.get_vertex_color_data());
+
+    body_data.draw();
 }
 
 void Cannon::shoot()
