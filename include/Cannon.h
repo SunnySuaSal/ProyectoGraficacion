@@ -14,7 +14,8 @@ public:
     void draw();
 private:
     Object<Obj> cbody;
-    Object<Ply> cwheel;
+    Object<Ply> lcwheel;
+    Object<Ply> rcwheel;
     Object<Stl> bullet;
     Vertex initial_position;
     Vertex bullet_position;

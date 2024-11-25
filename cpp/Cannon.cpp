@@ -5,7 +5,8 @@
 Cannon::Cannon()
 {
     this->cbody.load_model("models/cannon_body.obj");
-    this->cwheel.load_model("models/cannon_wheel.ply");
+    this->lcwheel.load_model("models/cannon_wheel.ply");
+    this->rcwheel.load_model("models/cannon_wheel.ply");
     this->bullet.load_model("models/bullet.stl");
 
     this->initial_position.set_x(0.0);
@@ -24,9 +25,18 @@ Cannon::Cannon()
 
 void Cannon::draw(){
         Triangle body_data(this->cbody.get_vertex_buffer_data(),
-                 this->cbody.get_vertex_color_data());
+            this->cbody.get_vertex_color_data());
+        Triangle lwheel_data(this->lcwheel.get_vertex_buffer_data(),
+            this->lcwheel.get_vertex_color_data());
+        Triangle rwheel_data(this->rcwheel.get_vertex_buffer_data(),
+            this->rcwheel.get_vertex_color_data());
+        Triangle bullet_data(this->bullet.get_vertex_buffer_data(),
+            this->bullet.get_vertex_color_data());
 
     body_data.draw();
+    lwheel_data.draw();
+    rwheel_data.draw();
+    bullet_data.draw();
 }
 
 void Cannon::shoot()
