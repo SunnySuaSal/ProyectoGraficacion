@@ -10,6 +10,8 @@ int main(){
 
     OpenGL gl = OpenGL();
 
+    //Commnt for testing
+
     GLFWwindow* window = gl.createWindow( 1024, 768, "Graficación");
     if( window == NULL )
         return -1;
