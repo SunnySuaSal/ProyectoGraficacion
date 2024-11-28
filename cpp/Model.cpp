@@ -5,6 +5,10 @@ Model::Model()
     this->name = "";
     this->vertices = {};
     this->faces = {};
+    this->transform = { {1.0, 0.0, 0.0, 0.0}, 
+                        {0.0, 1.0, 0.0, 0.0},
+                        {0.0, 0.0, 1.0, 0.0},
+                        {0.0, 0.0, 0.0, 1.0}};
 }
 
 Model::Model(string file)
@@ -12,6 +16,10 @@ Model::Model(string file)
     this->name = "";
     this->vertices = {};
     this->faces = {};
+    this->transform = { {1.0, 0.0, 0.0, 0.0}, 
+                        {0.0, 1.0, 0.0, 0.0},
+                        {0.0, 0.0, 1.0, 0.0},
+                        {0.0, 0.0, 0.0, 1.0}};
 }
 
 vector<string> Model::split(const string& str, const string& delim){
@@ -46,9 +54,10 @@ vector <GLfloat> Model::get_vertex_buffer_data(){
         //Por cada vertice de la cara
         for(unsigned int iv : f.get_vertices()){
             Vertex v = this->get_vertex(iv);
-            vertex_data.push_back(v.get_x());
-            vertex_data.push_back(v.get_y());
-            vertex_data.push_back(v.get_z());
+            arma::Mat<float> v_transformed = this->transform * v.homogeneous();
+            vertex_data.push_back(v_transformed.at(0,0));
+            vertex_data.push_back(v_transformed.at(1,0));
+            vertex_data.push_back(v_transformed.at(2,0));
         }
     }
     return (vertex_data);
@@ -66,4 +75,8 @@ vector <GLfloat> Model::get_vertex_color_data(){
         }
     }
     return (color_data);
+}
+
+void Model::set_transform(arma::Mat<float> new_transf){
+    this->transform = new_transf;
 }
