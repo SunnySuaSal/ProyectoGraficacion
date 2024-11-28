@@ -7,23 +7,24 @@ Cannon::Cannon()
 
     Animation an;
 
-    this->cbody.load_model("models/cannon_body.obj");
-
-
-    this->lcwheel.load_model("models/cannon_wheel.ply");
-    this->lcwheel.set_transform(an.scaling(0.2, 0.2, 0.2));
-
-    this->rcwheel.load_model("models/cannon_wheel.ply");
-
-    this->bullet.load_model("models/bullet.stl");
-
-    this->initial_position.set_x(0.0);
+    this->initial_position.set_x(-0.9);
     this->initial_position.set_y(0.0);
-    this->initial_position.set_z(0.0);
+    this->initial_position.set_z(0.0);  
 
     this->bullet_position.set_x(this->initial_position.get_x()+0.1);
     this->bullet_position.set_y(this->initial_position.get_y()+0.2);
     this->bullet_position.set_z(this->initial_position.get_z());
+
+    this->cbody.load_model("models/cannon_body.obj");
+
+
+    this->lcwheel.load_model("models/cannon_wheel.ply");
+    this->lcwheel.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
+                                * an.scaling(0.1, 0.1, 0.1));
+
+    this->rcwheel.load_model("models/cannon_wheel.ply");
+
+    this->bullet.load_model("models/bullet.stl");
 
     this->angle = 45.0;
     this->force = 0.5;
