@@ -1,6 +1,6 @@
 #include "../include/Triangle.h"
 
-
+//Esta parte de aqui pasa el triangulo a la GPU
 Triangle::Triangle(vector <GLfloat> vertex_buffer_data, vector <GLfloat> color_buffer_data)
 {
     GLuint VertexArrayID;

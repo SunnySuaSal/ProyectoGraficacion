@@ -12,19 +12,24 @@ Cannon::Cannon()
     this->initial_position.set_z(0.0);  
 
     this->bullet_position.set_x(this->initial_position.get_x()+0.1);
-    this->bullet_position.set_y(this->initial_position.get_y()+0.2);
+    this->bullet_position.set_y(this->initial_position.get_y());
     this->bullet_position.set_z(this->initial_position.get_z());
 
     this->cbody.load_model("models/cannon_body.obj");
-
+    this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
+                            * an.scaling(0.09, 0.09, 0.09));
 
     this->lcwheel.load_model("models/cannon_wheel.ply");
-    this->lcwheel.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
+    this->lcwheel.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()-0.1) 
                                 * an.scaling(0.1, 0.1, 0.1));
 
     this->rcwheel.load_model("models/cannon_wheel.ply");
+    this->rcwheel.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y(), this->initial_position.get_z()+0.1) 
+                                * an.scaling(0.1, 0.1, 0.1));
 
     this->bullet.load_model("models/bullet.stl");
+    this->bullet.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
+                                * an.scaling(0.1, 0.1, 0.1));
 
     this->angle = 45.0;
     this->force = 0.5;
@@ -42,10 +47,10 @@ void Cannon::draw(){
         Triangle bullet_data(this->bullet.get_vertex_buffer_data(),
             this->bullet.get_vertex_color_data());
 
-    //body_data.draw();
+    body_data.draw();
     lwheel_data.draw();
-    //rwheel_data.draw();
-    //bullet_data.draw();
+    rwheel_data.draw();
+    bullet_data.draw();
 }
 
 void Cannon::shoot()
