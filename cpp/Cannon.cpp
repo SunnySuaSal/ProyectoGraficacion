@@ -96,7 +96,7 @@ void Cannon::shoot()
     P4.set_z(P1.get_z());
     P4.print();
 
-    this->bullet_trajectory = an.bezier(P1, P2, P3, P4, 0.1);
+    this->bullet_trajectory = an.bezier(P1, P2, P3, P4, 0.05);
 
     this->shooted = true;
 }
@@ -115,4 +115,13 @@ void Cannon::move(float angle){
     this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
                            * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
 
+}
+
+void Cannon::reset(){
+    Animation an;
+    this->shooted = false;
+    this->ind_trajectory = 0;
+    this->bullet_trajectory.empty();
+    this->bullet.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
+                                * an.scaling(0.1, 0.1, 0.1));
 }

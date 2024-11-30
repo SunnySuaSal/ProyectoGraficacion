@@ -37,6 +37,10 @@ int main(){
         int state_sp = glfwGetKey(window, GLFW_KEY_SPACE);
         if (state_sp == GLFW_PRESS)
             myCannon.shoot();
+        
+        int state_restart = glfwGetKey(window, GLFW_KEY_R);
+        if (state_restart == GLFW_PRESS)
+            myCannon.reset();
 
     } while ( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
         glfwWindowShouldClose(window) == 0 );

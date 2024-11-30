@@ -13,6 +13,7 @@ public:
     void shoot();
     void draw();
     void move(float angle);
+    void reset();
 private:
     Object<Obj> cbody;
     Object<Ply> lcwheel;
