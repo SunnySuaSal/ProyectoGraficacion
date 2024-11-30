@@ -85,6 +85,17 @@ void Cannon::shoot()
 }
 
 void Cannon::move(float angle){
-    if(this->angle > 0.0 && this->angle < 90.0)
+    Animation an;
+    if(this->angle >= 0.0 && this->angle <= 90.0)
         this->angle += angle;
+    
+    if(this->angle < 0.0)
+        this->angle = 0.0;
+
+    if(this->angle > 90.0)
+        this->angle = 90.0;
+        
+    this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
+                           * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
+
 }
