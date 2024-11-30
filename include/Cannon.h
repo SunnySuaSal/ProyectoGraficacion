@@ -12,6 +12,7 @@ public:
     Cannon();
     void shoot();
     void draw();
+    void move(float angle);
 private:
     Object<Obj> cbody;
     Object<Ply> lcwheel;

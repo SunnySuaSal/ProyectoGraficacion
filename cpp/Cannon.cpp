@@ -15,9 +15,12 @@ Cannon::Cannon()
     this->bullet_position.set_y(this->initial_position.get_y());
     this->bullet_position.set_z(this->initial_position.get_z());
 
+    this->angle = 0.0;
+    this->force = 0.5;
+
     this->cbody.load_model("models/cannon_body.obj");
     this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
-                            * an.scaling(0.09, 0.09, 0.09));
+                           * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
 
     this->lcwheel.load_model("models/cannon_wheel.ply");
     this->lcwheel.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()-0.1) 
@@ -30,10 +33,7 @@ Cannon::Cannon()
     this->bullet.load_model("models/bullet.stl");
     this->bullet.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
                                 * an.scaling(0.1, 0.1, 0.1));
-
-    this->angle = 45.0;
-    this->force = 0.5;
-
+    
     this->bullet_trajectory = {};
 }
 
@@ -82,4 +82,9 @@ void Cannon::shoot()
     P4.print();
 
     this->bullet_trajectory = an.bezier(P1, P2, P3, P4, 0.1);
+}
+
+void Cannon::move(float angle){
+    if(this->angle > 0.0 && this->angle < 90.0)
+        this->angle += angle;
 }

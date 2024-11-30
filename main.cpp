@@ -26,10 +26,17 @@ int main(){
         glfwSwapBuffers(window);
         glfwPollEvents();
 
+        int state_up = glfwGetKey(window, GLFW_KEY_UP);
+        if (state_up == GLFW_PRESS)
+            myCannon.move(5);
+
+        int state_down = glfwGetKey(window, GLFW_KEY_DOWN);
+        if (state_down == GLFW_PRESS)
+            myCannon.move(-5);
+
         int state_sp = glfwGetKey(window, GLFW_KEY_SPACE);
-        if (state_sp == GLFW_PRESS) {
+        if (state_sp == GLFW_PRESS)
             myCannon.shoot();
-        }
 
     } while ( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
         glfwWindowShouldClose(window) == 0 );
