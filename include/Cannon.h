@@ -23,6 +23,8 @@ private:
     float angle;
     float force;
     vector<Vertex> bullet_trajectory;
+    bool shooted;
+    unsigned int ind_trajectory;
 };
 
 #endif

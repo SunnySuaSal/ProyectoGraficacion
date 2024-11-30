@@ -1,5 +1,6 @@
 #include "../include/Cannon.h"
 #include "../include/Animation.h"
+#include "../include/Vertex.h"
 
 
 Cannon::Cannon()
@@ -14,6 +15,9 @@ Cannon::Cannon()
     this->bullet_position.set_x(this->initial_position.get_x()+0.1);
     this->bullet_position.set_y(this->initial_position.get_y());
     this->bullet_position.set_z(this->initial_position.get_z());
+
+    this->shooted = false;
+    this->ind_trajectory = 0;
 
     this->angle = 0.0;
     this->force = 0.5;
@@ -38,6 +42,9 @@ Cannon::Cannon()
 }
 
 void Cannon::draw(){
+
+    Animation an;
+
         Triangle body_data(this->cbody.get_vertex_buffer_data(),
             this->cbody.get_vertex_color_data());
         Triangle lwheel_data(this->lcwheel.get_vertex_buffer_data(),
@@ -50,6 +57,14 @@ void Cannon::draw(){
     body_data.draw();
     lwheel_data.draw();
     rwheel_data.draw();
+    if(shooted){
+        if(this->ind_trajectory < this->bullet_trajectory.size()){
+            Vertex bulletVertex = this->bullet_trajectory[ind_trajectory];
+            this->ind_trajectory++;
+            this->bullet.set_transform(an.traslation(bulletVertex.get_x(), bulletVertex.get_y(), bulletVertex.get_z()) 
+                                * an.scaling(0.1, 0.1, 0.1));
+        }
+    }
     bullet_data.draw();
 }
 
@@ -82,19 +97,21 @@ void Cannon::shoot()
     P4.print();
 
     this->bullet_trajectory = an.bezier(P1, P2, P3, P4, 0.1);
+
+    this->shooted = true;
 }
 
 void Cannon::move(float angle){
     Animation an;
-    if(this->angle >= 0.0 && this->angle <= 90.0)
+    if(this->angle >= 0.0 && this->angle <= 80.0)
         this->angle += angle;
     
     if(this->angle < 0.0)
         this->angle = 0.0;
 
-    if(this->angle > 90.0)
-        this->angle = 90.0;
-        
+    if(this->angle > 80.0)
+        this->angle = 80.0;
+
     this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
                            * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
 
