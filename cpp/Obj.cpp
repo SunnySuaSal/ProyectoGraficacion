@@ -48,5 +48,5 @@ void Obj::load(string file){
             }
         }
     }
-
+    this->calculate_normals();
 }

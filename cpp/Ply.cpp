@@ -58,4 +58,5 @@ void Ply::load(string file){
             }
         }
     }
+    this->calculate_normals();
 }

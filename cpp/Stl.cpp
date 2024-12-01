@@ -51,4 +51,5 @@ void Stl::load(string file) {
             in_facet = false;
         }
     }
+    this->calculate_normals();
 }

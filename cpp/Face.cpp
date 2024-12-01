@@ -20,3 +20,11 @@ void Face::print(vector<Vertex> vert){
 vector<unsigned int> Face::get_vertices(){
     return this->vertices;
 }
+
+void Face::calculate_normal(Vertex v1, Vertex v2, Vertex v3){
+    arma::vec va = {v2.get_x() - v1.get_x(), v2.get_y() - v1.get_y(), v2.get_z() - v1.get_z()};
+    arma::vec vb = {v3.get_x() - v1.get_x(), v3.get_y() - v1.get_y(), v3.get_z() - v1.get_z()};
+
+    arma::vec vc = arma::cross(va, vb);
+    this->normal = arma::normalise(vc);
+}

@@ -89,3 +89,13 @@ void Model::set_color(float r, float g, float b){
     this->g = g;
     this->b = b;
 }
+
+void Model::calculate_normals(){
+    for(Face f : this->faces){
+        vector<unsigned int> vert = f.get_vertices();
+        Vertex v1 = this->get_vertex(vert[0]);
+        Vertex v2 = this->get_vertex(vert[1]);
+        Vertex v3 = this->get_vertex(vert[2]);
+        f.calculate_normal(v1, v2, v3);
+    }
+}

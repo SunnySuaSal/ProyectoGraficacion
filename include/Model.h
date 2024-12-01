@@ -27,6 +27,7 @@ public:
     vector <GLfloat> get_vertex_color_data();
     void set_transform(arma::Mat<float> new_transf);
     void set_color(float r, float g, float b);
+    void calculate_normals();
 protected:
     string name;
     vector<Vertex> vertices;
