@@ -9,6 +9,9 @@ Model::Model()
                         {0.0, 1.0, 0.0, 0.0},
                         {0.0, 0.0, 1.0, 0.0},
                         {0.0, 0.0, 0.0, 1.0}};
+    this->r = 1.0;
+    this->g = 1.0;
+    this->b = 1.0;
 }
 
 Model::Model(string file)
@@ -69,9 +72,9 @@ vector <GLfloat> Model::get_vertex_color_data(){
         //Por cada vertice de la cara
         for(unsigned int iv : f.get_vertices()){
             Vertex v = this->get_vertex(iv);
-            color_data.push_back(1.0);
-            color_data.push_back(1.0);
-            color_data.push_back(1.0);
+            color_data.push_back(this->r);
+            color_data.push_back(this->g);
+            color_data.push_back(this->b);
         }
     }
     return (color_data);
@@ -79,4 +82,10 @@ vector <GLfloat> Model::get_vertex_color_data(){
 
 void Model::set_transform(arma::Mat<float> new_transf){
     this->transform = new_transf;
+}
+
+void Model::set_color(float r, float g, float b){
+    this->r = r;
+    this->g = g;
+    this->b = b;
 }

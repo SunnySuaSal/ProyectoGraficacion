@@ -26,6 +26,7 @@ public:
     vector <GLfloat> get_vertex_buffer_data();
     vector <GLfloat> get_vertex_color_data();
     void set_transform(arma::Mat<float> new_transf);
+    void set_color(float r, float g, float b);
 protected:
     string name;
     vector<Vertex> vertices;
@@ -33,6 +34,7 @@ protected:
     vector<string> split(const string& str, const string& delim);
     virtual void load(string file) = 0;
     arma::Mat<float> transform;
+    float r, g, b;
 };
 
 #endif

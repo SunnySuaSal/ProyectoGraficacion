@@ -25,18 +25,22 @@ Cannon::Cannon()
     this->cbody.load_model("models/cannon_body.obj");
     this->cbody.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
                            * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
+    this->cbody.set_color(0.0, 0.0, 1.0);
 
     this->lcwheel.load_model("models/cannon_wheel.ply");
     this->lcwheel.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()-0.1) 
                                 * an.scaling(0.1, 0.1, 0.1));
+    this->lcwheel.set_color(0.0, 1.0, 0.0);
 
     this->rcwheel.load_model("models/cannon_wheel.ply");
     this->rcwheel.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y(), this->initial_position.get_z()+0.1) 
                                 * an.scaling(0.1, 0.1, 0.1));
+    this->rcwheel.set_color(0.0, 0.5, 0.0);
 
     this->bullet.load_model("models/bullet.stl");
     this->bullet.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
                                 * an.scaling(0.1, 0.1, 0.1));
+    this->bullet.set_color(1.0, 0.0, 0.0);
     
     this->bullet_trajectory = {};
 }
@@ -121,7 +125,7 @@ void Cannon::reset(){
     Animation an;
     this->shooted = false;
     this->ind_trajectory = 0;
-    this->bullet_trajectory.empty();
+    this->bullet_trajectory.clear();
     this->bullet.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
                                 * an.scaling(0.1, 0.1, 0.1));
 }
