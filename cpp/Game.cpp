@@ -32,8 +32,7 @@ Game::Game()
     this->piggy.set_color(0.0, 1.0, 0.0);
 
     this->slingshot.load_model("models/resortera.stl");
-    this->slingshot.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
-                                * an.scaling(0.1, 0.1, 0.1));
+    this->slingshot.set_transform(an.traslation(-0.4, -0.1, 0.0) * an.scaling(0.01, 0.01, 0.01) * an.rotation_x(-90));
     this->slingshot.set_color(1.0, 0.0, 0.0);
     
     this->duck_trajectory = {};
@@ -48,7 +47,7 @@ void Game::draw(){
 
     duck_data.draw();
     //piggy_data.draw();
-    //slingshot_data.draw();
+    slingshot_data.draw();
 
     if(shooted){
         if(this->ind_trajectory < this->duck_trajectory.size()){
