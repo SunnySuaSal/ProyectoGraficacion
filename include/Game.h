@@ -12,7 +12,7 @@ public:
     Game();
     void shoot();
     void draw();
-    void move(float angle);
+    void moveDuck(float shift);
     void reset();
 private:
     Object<Obj> duck;

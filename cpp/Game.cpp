@@ -92,20 +92,24 @@ void Game::shoot()
     this->shooted = true;
 }
 
-void Game::move(float angle){
+void Game::moveDuck(float shift){
     Animation an;
-    if(this->angle >= 0.0 && this->angle <= 80.0)
-        this->angle += angle;
-    
-    if(this->angle < 0.0)
-        this->angle = 0.0;
-
-    if(this->angle > 80.0)
-        this->angle = 80.0;
-
-    this->duck.set_transform(an.traslation(this->initial_position.get_x()+0.1, this->initial_position.get_y()+0.2, this->initial_position.get_z()) 
-                           * an.rotation_z(this->angle) * an.scaling(0.09, 0.09, 0.09));
-
+    //tambien modifica la fuerza del disparo
+    this->force += shift;
+    //el pato no debe moverse mas de ese rango de -0.8 y -0.6
+    if(this->force >= 0.6){
+        this->force = 0.6;
+        this->initial_position.set_x(-0.8);
+    }
+    else if(this->force <= 0.4){
+        this->force = 0.4;
+        this->initial_position.set_x(-0.6);
+    }
+    else {
+        this->initial_position.set_x(-0.7);
+    }
+    this->duck.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
+                           * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
 }
 
 void Game::reset(){
@@ -113,6 +117,5 @@ void Game::reset(){
     this->shooted = false;
     this->ind_trajectory = 0;
     this->duck_trajectory.clear();
-    this->duck.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
-                                * an.scaling(0.1, 0.1, 0.1));
+    this->duck.set_transform(an.traslation(-0.7, 0.0, 0.0) * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
 }
