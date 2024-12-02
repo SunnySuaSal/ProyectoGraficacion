@@ -13,6 +13,7 @@ public:
     void shoot();
     void draw();
     void moveDuck(float shift);
+    void moveSlingshot(float shift);
     void reset();
 private:
     Object<Obj> duck;

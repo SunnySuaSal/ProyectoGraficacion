@@ -8,11 +8,11 @@ Game::Game()
 
     Animation an;
 
-    this->initial_position.set_x(-0.9);
+    this->initial_position.set_x(-0.7);
     this->initial_position.set_y(0.0);
     this->initial_position.set_z(0.0);  
 
-    this->bullet_position.set_x(this->initial_position.get_x()+0.1);
+    this->bullet_position.set_x(this->initial_position.get_x() + 0.1);
     this->bullet_position.set_y(this->initial_position.get_y());
     this->bullet_position.set_z(this->initial_position.get_z());
 
@@ -23,7 +23,8 @@ Game::Game()
     this->force = 0.5;
 
     this->duck.load_model("models/duck.obj");
-    this->duck.set_transform(an.traslation(-0.7, 0.0, 0.0) * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
+    this->duck.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
+                           * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
     this->duck.set_color(0.0, 0.0, 1.0);
 
     this->piggy.load_model("models/piggy.ply");
@@ -45,18 +46,17 @@ void Game::draw(){
     Triangle piggy_data(this->piggy.get_vertex_buffer_data(), this->piggy.get_vertex_color_data());
     Triangle slingshot_data(this->slingshot.get_vertex_buffer_data(), this->slingshot.get_vertex_color_data());
 
-    duck_data.draw();
-    piggy_data.draw();
-    slingshot_data.draw();
-
     if(shooted){
         if(this->ind_trajectory < this->duck_trajectory.size()){
             Vertex duckVertex = this->duck_trajectory[ind_trajectory];
             this->ind_trajectory++;
-            this->duck.set_transform(an.traslation(duckVertex.get_x(), duckVertex.get_y(), duckVertex.get_z()) 
-                                * an.scaling(0.1, 0.1, 0.1));
+            this->duck.set_transform(an.traslation(duckVertex.get_x(), duckVertex.get_y(), duckVertex.get_z()));
         }
     }
+
+    duck_data.draw();
+    piggy_data.draw();
+    slingshot_data.draw();
 }
 
 void Game::shoot()
@@ -73,7 +73,7 @@ void Game::shoot()
     float rangle = (this->angle * PI) / 180.0;
 
     P2.set_x(P1.get_x() + this->force);
-    P2.set_y(P1.get_y() + (1-cos(rangle)));
+    P2.set_y(P1.get_y() + (1 - cos(rangle)));
     P2.set_z(P1.get_z());
     P2.print();
 
@@ -112,10 +112,33 @@ void Game::moveDuck(float shift){
                            * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
 }
 
+void Game::moveSlingshot(float shift){
+    Animation an;
+    //tambien modifica el ángulo del disparo
+    this->angle += shift;
+    //la resortera no debe moverse más de ese rango de -0.1 y 0.1 en el eje y
+    float new_y = this->initial_position.get_y() + shift;
+    if(new_y > 0.1){
+        new_y = 0.1;
+    }
+    else if(new_y < -0.1){
+        new_y = -0.1;
+    }
+    this->initial_position.set_y(new_y);
+    this->slingshot.set_transform(an.traslation(-0.4, this->initial_position.get_y(), this->initial_position.get_z()) 
+                                * an.scaling(0.01, 0.01, 0.01) * an.rotation_x(-90));
+}
+
 void Game::reset(){
     Animation an;
     this->shooted = false;
     this->ind_trajectory = 0;
     this->duck_trajectory.clear();
-    this->duck.set_transform(an.traslation(-0.7, 0.0, 0.0) * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
+    this->force = 0.5;
+    this->angle = 0.0;
+    this->initial_position.set_x(-0.7);
+    this->initial_position.set_y(0.0);
+    this->duck.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
+                           * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
+    this->slingshot.set_transform(an.traslation(-0.4, -0.1, 0.0) * an.scaling(0.01, 0.01, 0.01) * an.rotation_x(-90));
 }

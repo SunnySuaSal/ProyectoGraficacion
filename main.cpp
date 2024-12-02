@@ -38,6 +38,14 @@ int main(){
         if (state_right == GLFW_PRESS)
             game.moveDuck(-0.1);
 
+        int state_up = glfwGetKey(window, GLFW_KEY_UP);
+        if (state_up == GLFW_PRESS)
+            game.moveSlingshot(0.1);
+
+        int state_down = glfwGetKey(window, GLFW_KEY_DOWN);
+        if (state_down == GLFW_PRESS)
+            game.moveSlingshot(-0.1);
+
         int state_sp = glfwGetKey(window, GLFW_KEY_SPACE);
         if (state_sp == GLFW_PRESS)
             game.shoot();
