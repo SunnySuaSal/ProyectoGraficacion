@@ -27,8 +27,8 @@ Game::Game()
     this->duck.set_color(0.0, 0.0, 1.0);
 
     this->piggy.load_model("models/piggy.ply");
-    this->piggy.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()-0.1) 
-                                * an.scaling(0.9, 0.9, 0.9));
+    //an.T(0.9, 0.0, 0.0) * an.Rx(90) * an.Rz(90) * an.S(0.00825, 0.00825, 0.00825)
+    this->piggy.set_transform(an.traslation(0.8, -0.1, 0.0) * an.scaling(0.00825, 0.00825, 0.00825) * an.rotation_x(90) * an.rotation_z(90));
     this->piggy.set_color(0.0, 1.0, 0.0);
 
     this->slingshot.load_model("models/resortera.stl");
@@ -46,7 +46,7 @@ void Game::draw(){
     Triangle slingshot_data(this->slingshot.get_vertex_buffer_data(), this->slingshot.get_vertex_color_data());
 
     duck_data.draw();
-    //piggy_data.draw();
+    piggy_data.draw();
     slingshot_data.draw();
 
     if(shooted){
