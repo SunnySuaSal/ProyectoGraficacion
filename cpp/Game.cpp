@@ -72,17 +72,18 @@ void Game::shoot()
 
     float rangle = (this->angle * PI) / 180.0;
 
-    P2.set_x(P1.get_x() + this->force * 2); // Ajuste para abrir más la trayectoria horizontalmente
-    P2.set_y(P1.get_y() + this->force); // Ajuste para que suba
+    // Ajustar los puntos de control para que no se salga horizontalmente de la pantalla
+    P2.set_x(P1.get_x() + this->force * 1.5); // Ajuste para abrir menos la trayectoria horizontalmente
+    P2.set_y(P1.get_y() + this->force * 1.5); // Ajuste para que suba
     P2.set_z(P1.get_z());
     P2.print();
 
-    P3.set_x(P2.get_x() + this->force * 2); // Ajuste para abrir más la trayectoria horizontalmente
-    P3.set_y(P2.get_y() - this->force * 2); // Ajuste para que baje
+    P3.set_x(P2.get_x() + this->force * 1.5); // Ajuste para abrir menos la trayectoria horizontalmente
+    P3.set_y(P2.get_y() - this->force * 2.0); // Ajuste para que baje
     P3.set_z(P1.get_z());
     P3.print();
 
-    P4.set_x(P3.get_x() + this->force * 2); // Ajuste para abrir más la trayectoria horizontalmente
+    P4.set_x(P3.get_x() + this->force * 1.5); // Ajuste para abrir menos la trayectoria horizontalmente
     P4.set_y(0.0); // Ajuste para que termine en el suelo
     P4.set_z(P1.get_z());
     P4.print();
@@ -90,6 +91,11 @@ void Game::shoot()
     // Asegurarse de que P4 esté en el suelo
     if (P4.get_y() < 0.0) {
         P4.set_y(0.0);
+    }
+
+    // Asegurarse de que P4 no se salga de la pantalla
+    if (P4.get_x() > 1.0) {
+        P4.set_x(1.0);
     }
 
     this->duck_trajectory = an.bezier(P1, P2, P3, P4, 0.05);
