@@ -49,7 +49,8 @@ void Game::draw(){
         if(this->ind_trajectory < this->duck_trajectory.size()){
             Vertex duckVertex = this->duck_trajectory[ind_trajectory];
             this->ind_trajectory++;
-            this->duck.set_transform(an.traslation(duckVertex.get_x(), duckVertex.get_y(), duckVertex.get_z()));
+            this->duck.set_transform(an.traslation(duckVertex.get_x(), duckVertex.get_y(), duckVertex.get_z()) 
+                                   * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
         }
     }
 
