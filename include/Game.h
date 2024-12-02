@@ -6,24 +6,23 @@
 #include "Object.h"
 #include "Triangle.h"
 
-class Cannon
+class Game
 {
 public:
-    Cannon();
+    Game();
     void shoot();
     void draw();
     void move(float angle);
     void reset();
 private:
-    Object<Obj> cbody;
-    Object<Ply> lcwheel;
-    Object<Ply> rcwheel;
-    Object<Stl> bullet;
+    Object<Obj> duck;
+    Object<Ply> piggy;
+    Object<Stl> slingshot;
     Vertex initial_position;
     Vertex bullet_position;
     float angle;
     float force;
-    vector<Vertex> bullet_trajectory;
+    vector<Vertex> duck_trajectory;
     bool shooted;
     unsigned int ind_trajectory;
 };

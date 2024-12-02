@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include "include/Cannon.h"
-//#include "include/OpenGL.h"
+#include "include/Game.h"
+#include "include/OpenGL.h"
 #include "include/Vertex.h"
 #include <armadillo>
 
@@ -9,7 +9,7 @@ using namespace std;
 
 int main(){
     
-    Cannon myCannon;
+    Game game;
 
     OpenGL gl = OpenGL();
 
@@ -24,11 +24,12 @@ int main(){
     do {
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-        myCannon.draw();
+        game.draw();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
 
+        /*
         int state_up = glfwGetKey(window, GLFW_KEY_UP);
         if (state_up == GLFW_PRESS)
             myCannon.move(5);
@@ -44,6 +45,8 @@ int main(){
         int state_restart = glfwGetKey(window, GLFW_KEY_R);
         if (state_restart == GLFW_PRESS)
             myCannon.reset();
+
+        */
 
     } while ( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
         glfwWindowShouldClose(window) == 0 );
