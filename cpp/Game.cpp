@@ -23,7 +23,7 @@ Game::Game()
     this->force = 0.5;
 
     this->duck.load_model("models/duck.obj");
-    this->duck.set_transform(an.rotation_y(90) * an.scaling(0.5, 0.5, 0.5));
+    this->duck.set_transform(an.traslation(-0.7, 0.0, 0.0) * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
     this->duck.set_color(0.0, 0.0, 1.0);
 
     this->piggy.load_model("models/piggy.ply");
@@ -32,7 +32,7 @@ Game::Game()
     this->piggy.set_color(0.0, 1.0, 0.0);
 
     this->slingshot.load_model("models/resortera.stl");
-    this->slingshot.set_transform(an.traslation(this->bullet_position.get_x(), this->bullet_position.get_y(), this->bullet_position.get_z()) 
+    this->slingshot.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
                                 * an.scaling(0.1, 0.1, 0.1));
     this->slingshot.set_color(1.0, 0.0, 0.0);
     
