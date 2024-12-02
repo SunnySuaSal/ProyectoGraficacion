@@ -12,9 +12,9 @@ Game::Game()
     this->initial_position.set_y(0.0);
     this->initial_position.set_z(0.0);  
 
-    this->bullet_position.set_x(this->initial_position.get_x() + 0.1);
-    this->bullet_position.set_y(this->initial_position.get_y());
-    this->bullet_position.set_z(this->initial_position.get_z());
+    this->duck_position.set_x(this->initial_position.get_x() + 0.1);
+    this->duck_position.set_y(this->initial_position.get_y());
+    this->duck_position.set_z(this->initial_position.get_z());
 
     this->shooted = false;
     this->ind_trajectory = 0;
@@ -28,7 +28,6 @@ Game::Game()
     this->duck.set_color(0.0, 0.0, 1.0);
 
     this->piggy.load_model("models/piggy.ply");
-    //an.T(0.9, 0.0, 0.0) * an.Rx(90) * an.Rz(90) * an.S(0.00825, 0.00825, 0.00825)
     this->piggy.set_transform(an.traslation(0.8, -0.1, 0.0) * an.scaling(0.00825, 0.00825, 0.00825) * an.rotation_x(90) * an.rotation_z(90));
     this->piggy.set_color(0.0, 1.0, 0.0);
 
@@ -64,10 +63,10 @@ void Game::shoot()
     Animation an;
     Vertex P1, P2, P3, P4;
 
-    //Calcular la trayectoria curva
-    P1.set_x(this->bullet_position.get_x());
-    P1.set_y(this->bullet_position.get_y());
-    P1.set_z(this->bullet_position.get_z());
+    // Calcular la trayectoria curva
+    P1.set_x(this->duck_position.get_x());
+    P1.set_y(this->duck_position.get_y());
+    P1.set_z(this->duck_position.get_z());
     P1.print();
 
     float rangle = (this->angle * PI) / 180.0;
@@ -108,6 +107,9 @@ void Game::moveDuck(float shift){
     else {
         this->initial_position.set_x(-0.7);
     }
+    this->duck_position.set_x(this->initial_position.get_x() + 0.1);
+    this->duck_position.set_y(this->initial_position.get_y());
+    this->duck_position.set_z(this->initial_position.get_z());
     this->duck.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
                            * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
 }
@@ -138,6 +140,9 @@ void Game::reset(){
     this->angle = 0.0;
     this->initial_position.set_x(-0.7);
     this->initial_position.set_y(0.0);
+    this->duck_position.set_x(this->initial_position.get_x() + 0.1);
+    this->duck_position.set_y(this->initial_position.get_y());
+    this->duck_position.set_z(this->initial_position.get_z());
     this->duck.set_transform(an.traslation(this->initial_position.get_x(), this->initial_position.get_y(), this->initial_position.get_z()) 
                            * an.scaling(0.5, 0.5, 0.5) * an.rotation_y(90));
     this->slingshot.set_transform(an.traslation(-0.4, -0.1, 0.0) * an.scaling(0.01, 0.01, 0.01) * an.rotation_x(-90));

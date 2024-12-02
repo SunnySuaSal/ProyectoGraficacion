@@ -1,5 +1,5 @@
-#ifndef CANNON_H
-#define CANNON_H
+#ifndef GAME_H
+#define GAME_H
 
 #pragma once
 
@@ -20,7 +20,7 @@ private:
     Object<Ply> piggy;
     Object<Stl> slingshot;
     Vertex initial_position;
-    Vertex bullet_position;
+    Vertex duck_position;
     float angle;
     float force;
     vector<Vertex> duck_trajectory;
